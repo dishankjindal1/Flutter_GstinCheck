@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 
 String mockUrl = 'https://611f9dc6988f860017ac4326.mockapi.io/api/gst';
 
-class GstData {
+class Gst {
   final String userId;
   final int gstin;
   final String name;
@@ -15,7 +15,7 @@ class GstData {
   final String dor;
   final String cancel;
 
-  GstData(
+  Gst(
       {required this.userId,
       required this.gstin,
       required this.name,
@@ -28,8 +28,8 @@ class GstData {
       required this.dor,
       required this.cancel});
 
-  factory GstData.fromJson(Map<String, dynamic> json) {
-    return GstData(
+  factory Gst.fromJson(Map<String, dynamic> json) {
+    return Gst(
         userId: json['id'],
         gstin: json['gstin'],
         name: json['name'],
@@ -44,12 +44,12 @@ class GstData {
   }
 }
 
-Future<GstData> fetchGstData(String data) async {
+Future<Gst> fetchGstData(String data) async {
   var dio = Dio();
   final response = await dio.get('$mockUrl'+'?gstin=$data');
 
   if (response.statusCode == 200) {
-    return GstData.fromJson(response.data[0]);
+    return Gst.fromJson(response.data[0]);
   } else {
     throw Exception('Failed to load');
   }
