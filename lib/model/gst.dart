@@ -1,9 +1,3 @@
-import 'dart:convert';
-
-import 'package:http/http.dart' as http;
-
-String mockUrl = 'https://611f9dc6988f860017ac4326.mockapi.io/api/gst?gstin';
-
 class Gst {
   final String userId;
   final int gstin;
@@ -43,16 +37,5 @@ class Gst {
         range: json['range'],
         dor: json['dor'],
         cancel: json['cancel']);
-  }
-}
-
-Future<Gst> fetchGstData(String data) async {
-  final response = await http.get(Uri.parse('$mockUrl'+'$data'));
-
-  if (response.statusCode == 200) {
-    print(response.body);
-    return Gst.fromJson(jsonDecode(response.body)[0]);
-  } else {
-    throw Exception('Failed to load');
   }
 }
