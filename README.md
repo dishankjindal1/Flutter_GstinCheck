@@ -4,6 +4,7 @@ This project is a mock application using MVVM design pattern. The whole purpose 
 
 ## ScreenShots
 
-![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/1.png?raw=true)![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/2.png?raw=true)
+![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/1.png?raw=true =250x)
+![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/2.png?raw=true)
 ![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/3.png?raw=true)
 ![alt text](https://github.com/dishankjj/Flutter_GstinCheck/blob/master/assets/screenshots/4.png?raw=true)
