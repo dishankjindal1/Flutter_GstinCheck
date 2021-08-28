@@ -1,7 +1,8 @@
 import 'dart:convert';
+import 'dart:io';
+import 'package:gstsampleproject/model/apis/app_exception.dart';
 import 'package:http/http.dart' as http;
 import 'package:gstsampleproject/model/services/base_service.dart';
-import '../gst.dart';
 
 class GstService extends BaseService {
 
@@ -9,21 +10,28 @@ class GstService extends BaseService {
   Future getResponse(String? value) async{
       final response = await http.get(Uri.parse('$baseUrl$value'));
 
-      if (response.statusCode == 200) {
-        print(response.body);
-        return Gst.fromJson(jsonDecode(response.body)[0]);
-      } else {
-        throw Exception('Failed to load');
+      try {
+        return returnResponse(response);
+      } on SocketException {
+        throw FetchDataException("No Internet Connection");
       }
   }
 
-  // Implement Exception handling
-  // We only want to handle the get response in the above method.
-  // We are going to separate the error handling logic in different function
-
   @override
-  returnResponse(http.Response response) {
-    // TODO: implement returnResponse
-    throw UnimplementedError();
+  dynamic returnResponse(http.Response response) {
+    switch(response.statusCode) {
+      case 200:
+        return jsonDecode(response.body)[0];
+      case 404:
+        throw NotFoundException(response.body.toString());
+      case 403:
+        throw UnauthorizedException(response.body.toString());
+      case 400:
+        throw BadRequestException(response.body.toString());
+      case 503:
+        throw ServiceUnavailableException(response.body.toString());
+      default:
+        throw FetchDataException("Error occurred while communication with server with status code ${response.statusCode}");
+    }
   }
 }

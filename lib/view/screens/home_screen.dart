@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gstsampleproject/model/gst.dart';
+import 'package:gstsampleproject/model/services/gst_service.dart';
 import 'details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -19,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Future<void> getData() async {
-    await fetchGstData(gstin).then((value) {
+    await GstService().getResponse("").then((value) { // null gst value
       gstData = value;
       check = true;
     });
