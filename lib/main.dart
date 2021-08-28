@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gstsampleproject/view/screens/details_screen.dart';
 import 'package:gstsampleproject/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 import 'view/screens/home_screen.dart';
@@ -17,6 +18,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context)=> HomeScreen(),
+          '/details': (context)=> DetailsScreen(),
           '*': (context)=> HomeScreen(),
         },
       ),

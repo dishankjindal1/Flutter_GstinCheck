@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gstsampleproject/model/gst.dart';
-import 'package:gstsampleproject/model/services/gst_service.dart';
 import 'package:gstsampleproject/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
-import 'details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,6 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    String? gstin;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -109,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (value == null || value.isEmpty) {
                               return "Please enter some text";
                             }
-                            Provider.of<GstViewModel>(context, listen: false).getGstDetails(value);
+                            gstin = value;
                           },
                         ),
                         SizedBox(height: 25),
@@ -119,21 +117,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.symmetric(vertical: 16)),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              getData().then(
-                                (value) {
-                                  check
-                                      ? Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => DetailsPage(
-                                              gstin: gstin,
-                                              gstData: gstData,
-                                            ),
-                                          ),
-                                        )
-                                      : tabN = true;
-                                },
-                              );
+                              Provider.of<GstViewModel>(context, listen: false).getGstDetails(gstin);
+                              Navigator.pushNamed(context, '/details');
                             }
                           },
                           child: Center(
