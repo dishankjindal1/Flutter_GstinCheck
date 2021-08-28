@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gstsampleproject/model/gst.dart';
 import 'package:gstsampleproject/model/services/gst_service.dart';
+import 'package:gstsampleproject/view_model/gst_view_model.dart';
+import 'package:provider/provider.dart';
 import 'details_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -11,22 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool tabN = true;
-  bool check = false;
-  String gstin = "";
-
-  late Gst gstData;
-
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  Future<void> getData() async {
-    await GstService().getResponse("").then((value) { // null gst value
-      gstData = value;
-      check = true;
-    });
-    //await Future.delayed(Duration(seconds: 3));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 padding: EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   borderRadius:
-                  BorderRadius.vertical(bottom: Radius.circular(30)),
+                      BorderRadius.vertical(bottom: Radius.circular(30)),
                   color: Colors.green,
                 ),
                 child: Column(
@@ -76,31 +63,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           ElevatedButton(
-                            onPressed: () {
-                              setState(() {
-                                tabN = true;
-                              });
-                            },
+                            onPressed: () {},
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(25)))),
+                                            BorderRadius.circular(25)))),
                             child: Text("Search GST Number"),
                           ),
                           ElevatedButton(
-                            onPressed: () async {
-                              setState(() {
-                                tabN = false;
-                              });
-                            },
+                            onPressed: () async {},
                             style: ButtonStyle(
                                 shape: MaterialStateProperty.all<
-                                    RoundedRectangleBorder>(
+                                        RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
                                         borderRadius:
-                                        BorderRadius.circular(25)))),
+                                            BorderRadius.circular(25)))),
                             child: Text("GST Return Status"),
                           ),
                         ],
@@ -120,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         TextFormField(
                           decoration: InputDecoration(
                             labelStyle:
-                            TextStyle(fontSize: 24, color: Colors.green),
+                                TextStyle(fontSize: 24, color: Colors.green),
                             labelText: "Enter GST number",
                             hintText: "Ex 06AFQPJ1959L1ZV",
                             hintStyle: TextStyle(color: Colors.grey),
@@ -130,12 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (value == null || value.isEmpty) {
                               return "Please enter some text";
                             }
-                            setState(
-                                  () {
-                                gstin = value;
-                              },
-                            );
-                            return null;
+                            Provider.of<GstViewModel>(context, listen: false).getGstDetails(value);
                           },
                         ),
                         SizedBox(height: 25),
@@ -146,17 +120,17 @@ class _HomeScreenState extends State<HomeScreen> {
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
                               getData().then(
-                                    (value) {
+                                (value) {
                                   check
                                       ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => DetailsPage(
-                                        gstin: gstin,
-                                        gstData: gstData,
-                                      ),
-                                    ),
-                                  )
+                                          context,
+                                          MaterialPageRoute(
+                                            builder: (context) => DetailsPage(
+                                              gstin: gstin,
+                                              gstData: gstData,
+                                            ),
+                                          ),
+                                        )
                                       : tabN = true;
                                 },
                               );
