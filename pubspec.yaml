@@ -19,8 +19,8 @@ dependencies:
   http:               ^0.13.3  # Model - Http services provider
 
 dev_dependencies:
-  flutter_test:
-    sdk: flutter
+  #test_api:           ^0.4.3   # Dependency for Test Package
+  test:               ^1.17.11 # Unit Testing Package
 
 flutter:
 
