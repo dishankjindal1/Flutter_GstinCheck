@@ -349,12 +349,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
       case Status.ERROR:
         return Scaffold(
           body: Center(
-            child: Text("Error while fetching data Data"),
+            child: Text("Error while fetching data : Details not found."),
           ),
         );
       default:
         return Scaffold(
-          body: Text("Default Mode, Api Status not working"),
+          body: Text("Default Mode, Api Status not working : Error while fetching data"),
         );
     }
   }
