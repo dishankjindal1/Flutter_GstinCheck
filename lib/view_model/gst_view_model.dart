@@ -23,8 +23,8 @@ class GstViewModel extends ChangeNotifier{
     _apiResponse = ApiResponse.loading("Fetching Detail of Gst $value");
     notifyListeners();
     try{
-      Gst data = await _gstRepository.fetchGstDetail(value);
-      _apiResponse = ApiResponse.completed(data);
+      _gst = await _gstRepository.fetchGstDetail(value);
+      _apiResponse = ApiResponse.completed(_gst);
     } catch(e) {
       _apiResponse = ApiResponse.error(e.toString());
     }
