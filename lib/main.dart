@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gstsampleproject/viewmodel/gst_view_model.dart';
+import 'package:gstsampleproject/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 import 'view/screens/home_screen.dart';
 
