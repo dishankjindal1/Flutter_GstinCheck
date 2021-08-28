@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gstsampleproject/viewmodel/gst_view_model.dart';
+import 'package:provider/provider.dart';
 import 'view/screens/home_screen.dart';
 
 void main() {
@@ -9,12 +11,15 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [ChangeNotifierProvider.value(value: GstViewModel())],
+      child: MaterialApp(
+        initialRoute: '/',
+        routes: {
+          '/': (context)=> HomeScreen(),
+          '*': (context)=> HomeScreen(),
+        },
       ),
-      home: HomeScreen(),
     );
   }
 }
