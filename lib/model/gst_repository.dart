@@ -1,21 +1,23 @@
 import 'package:gstsampleproject/model/services/base_service.dart';
+import 'package:gstsampleproject/model/services/db_service.dart';
 import 'package:gstsampleproject/model/services/gst_service.dart';
 import 'gst.dart';
 
 class GstRepository {
+  
   BaseService _gstService = GstService();
+  DBService _dbService = DBService();
 
   Future<Gst> fetchGstDetail(String? value) async {
-    dynamic response = await _gstService.getResponse(value);
-    return Gst.fromJson(response);
-    // List<Gst> gstList = jsonData.map((tagJson) => Gst.fromJson(response)).toList();
+    dynamic response;
 
+    if (await _dbService.check(value)) // Check if data is present in Local Storage
+      response = await _dbService.getResponse(value);
+    else {
+      response = await _gstService.getResponse(value); // Retrieve Data from the Network Call
+      await _dbService.storeDetials(response); // Store in the Local Storage
+    }
 
-    /*
-
-    >>> Implement Local Storage using shared preferences or DB solution
-    >> If data is already fetched, we will avoid expense network call and fetch the same data from the DB
-
-     */
+    return Gst.fromJson(response); // response is a JsonDecoded Map<K,V>
   }
 }
