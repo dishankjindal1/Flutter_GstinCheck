@@ -5,7 +5,10 @@ import 'package:gstsampleproject/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 import 'view/screens/home_screen.dart';
 
-void main() {
+void main() async{
+
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(MyApp());
 }
 

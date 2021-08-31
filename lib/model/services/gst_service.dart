@@ -5,21 +5,18 @@ import 'package:http/http.dart' as http;
 import 'package:gstsampleproject/model/services/base_service.dart';
 
 class GstService extends BaseService {
-
   @override
-  Future getResponse(String? value) async{
-      final response = await http.get(Uri.parse('$baseUrl$value'));
-
-      try {
-        return returnResponse(response);
-      } on SocketException {
-        throw FetchDataException("No Internet Connection");
-      }
+  Future getResponse(String? value) async {
+    http.Response response = await http.get(Uri.parse('$baseUrl$value'));
+    try {
+      return returnResponse(response);
+    } on SocketException {
+      throw FetchDataException("No Internet Connection");
+    }
   }
 
-  @override
   dynamic returnResponse(http.Response response) {
-    switch(response.statusCode) {
+    switch (response.statusCode) {
       case 200:
         return jsonDecode(response.body)[0];
       case 404:
@@ -31,7 +28,8 @@ class GstService extends BaseService {
       case 503:
         throw ServiceUnavailableException(response.body.toString());
       default:
-        throw FetchDataException("Error occurred while communication with server with status code ${response.statusCode}");
+        throw FetchDataException(
+            "Error occurred while communication with server with status code ${response.statusCode}");
     }
   }
 }
