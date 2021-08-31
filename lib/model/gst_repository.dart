@@ -15,7 +15,7 @@ class GstRepository {
       response = await _dbService.getResponse(value);
     else {
       response = await _gstService.getResponse(value); // Retrieve Data from the Network Call
-      await _dbService.storeDetials(response); // Store in the Local Storage
+      await _dbService.storeDetails(response); // Store in the Local Storage
     }
 
     return Gst.fromJson(response); // response is a JsonDecoded Map<K,V>

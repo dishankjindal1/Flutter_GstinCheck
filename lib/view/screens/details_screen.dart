@@ -42,7 +42,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ? GestureDetector(
             onTap: () {
               final snackbar = SnackBar(
-                  content: Text("Button Pressed.... Demo function!!"));
+                  content: Text("Button Pressed.... Demo function!!"),);
               ScaffoldMessenger.of(context).showSnackBar(snackbar);
             },
             child: Container(
@@ -56,7 +56,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         fontSize: 16,
                         color: Colors.white,
                       ),
-                    ))),
+                    ),),),
           )
               : Container(height: 0, color: Colors.white),
           body: SingleChildScrollView(
@@ -154,11 +154,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             SizedBox(height: 10),
                             Text("Principle Place of Bussiness"),
                             SizedBox(height: 10),
-                            // Text(gst.address,
-                            //     style: TextStyle(
-                            //       fontWeight: FontWeight.bold,
-                            //       fontSize: 16,
-                            //     )),
+                            Text(gst.address,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                )),
                             SizedBox(height: 25),
                             Text("Additional Place of Bussiness"),
                             SizedBox(height: 10),
@@ -193,12 +193,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   fontSize: 10,
                                 ),
                               ),
-                              // Text(
-                              //   "Ward ${gst.ward}",
-                              //   style: TextStyle(
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // )
+                              Text(
+                                "Ward ${gst.ward}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -216,12 +216,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   fontSize: 10,
                                 ),
                               ),
-                              // Text(
-                              //   "Range - ${gst.range}",
-                              //   style: TextStyle(
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // )
+                              Text(
+                                "Range - ${gst.range}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -239,12 +239,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   fontSize: 10,
                                 ),
                               ),
-                              // Text(
-                              //   gst.taxtype ? "Regular" : "Composite",
-                              //   style: TextStyle(
-                              //     fontWeight: FontWeight.bold,
-                              //   ),
-                              // )
+                              Text(
+                                gst.taxtype ? "Regular" : "Composite",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              )
                             ],
                           ),
                         ),
@@ -272,14 +272,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 fontSize: 10,
                               ),
                             ),
-                            // Text(
-                            //   gst.biztype
-                            //       ? "Private Limited Company"
-                            //       : "Incorporation",
-                            //   style: TextStyle(
-                            //     fontWeight: FontWeight.bold,
-                            //   ),
-                            // ),
+                            Text(
+                              gst.biztype
+                                  ? "Private Limited Company"
+                                  : "Incorporation",
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             SizedBox(height: 10),
                           ]),
                     ]),
@@ -327,14 +327,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       fontSize: 10,
                                     ),
                                   ),
-                                  // Text(
-                                  //   gst.status
-                                  //       ? "--"
-                                  //       : gst.cancel.capitalize(),
-                                  //   style: TextStyle(
-                                  //     fontWeight: FontWeight.bold,
-                                  //   ),
-                                  // ),
+                                  Text(
+                                    gst.status
+                                        ? "--"
+                                        : gst.cancel.capitalize(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                   SizedBox(height: 10),
                                 ]),
                           ]),
