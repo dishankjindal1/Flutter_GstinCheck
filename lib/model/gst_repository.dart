@@ -4,7 +4,6 @@ import 'package:gstsampleproject/model/services/gst_service.dart';
 import 'gst.dart';
 
 class GstRepository {
-  
   BaseService _gstService = GstService();
   DBService _dbService = DBService();
 
