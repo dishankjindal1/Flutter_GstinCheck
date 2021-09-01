@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gstsampleproject/view/widgets/slider_button_widget.dart';
 import 'package:gstsampleproject/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -11,12 +12,15 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _textEditingController = TextEditingController();
+  bool _selectorIndexButtonSwitch = true;
+
   @override
   Widget build(BuildContext context) {
-    String? gstin;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.green[400],
         elevation: 0,
         actions: [
           Padding(
@@ -35,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 decoration: BoxDecoration(
                   borderRadius:
                       BorderRadius.vertical(bottom: Radius.circular(30)),
-                  color: Colors.green,
+                  color: Colors.green[400],
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -51,39 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: Colors.white,
                           fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(height: 10),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(25),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          ElevatedButton(
-                            onPressed: () {},
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(25)))),
-                            child: Text("Search GST Number"),
-                          ),
-                          ElevatedButton(
-                            onPressed: () async {},
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(25)))),
-                            child: Text("GST Return Status"),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10)
+                    SizedBox(height: 20),
+                    GestureDetector(onTap: () {
+                      setState(() {
+                        _selectorIndexButtonSwitch = !_selectorIndexButtonSwitch;
+                      });
+                    },child: sliderButtonWidget(context, _selectorIndexButtonSwitch)),
                   ],
                 ),
               ),
@@ -95,19 +72,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       children: [
                         TextFormField(
+                          controller: _textEditingController,
                           decoration: InputDecoration(
                             labelStyle:
                                 TextStyle(fontSize: 24, color: Colors.green),
-                            labelText: "Enter GST number",
-                            hintText: "Ex 06AFQPJ1959L1ZV",
+                            labelText: 'Enter GST number',
+                            hintText: 'Ex 06AFQPJ1959L1ZV',
                             hintStyle: TextStyle(color: Colors.grey),
                             fillColor: Colors.white10,
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Please enter some text";
+                              return 'Please enter some text';
                             }
-                            gstin = value;
                           },
                         ),
                         SizedBox(height: 25),
@@ -117,7 +94,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               padding: EdgeInsets.symmetric(vertical: 16)),
                           onPressed: () async {
                             if (_formKey.currentState!.validate()) {
-                              Provider.of<GstViewModel>(context, listen: false).getGstDetails(gstin);
+                              Provider.of<GstViewModel>(context, listen: false)
+                                  .getGstDetails(_textEditingController.text);
+                              _textEditingController.clear();
                               Navigator.pushNamed(context, '/details');
                             }
                           },
