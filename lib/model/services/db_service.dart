@@ -9,22 +9,22 @@ class DBService extends BaseService {
   Future getResponse(String? value) async => _dataEn;
 
   Future check(String? value) async {
-    print('reached check with $value');
     if (value != null && await getDetails(value))
       return true;
     else
       return false;
   }
 
-  Future storeDetails(dynamic data) async {
-    await _localStorage.setItem("${data['gstin']}", data);
+  void storeDetails(dynamic data) {
+    /**
+     * toString() method is used because the getDetails() method
+     * stores the data key as string but the value is integer
+     */
+    _localStorage.setItem(data['gstin'].toString(), data);
   }
 
   Future<bool> getDetails(String value) async {
-    _dataEn = await _localStorage.getItem('$value');
-
-    if (_dataEn == null) return false;
-
-    return true;
+    _dataEn = _localStorage.getItem(value);
+    return _dataEn != null ? true : false;
   }
 }

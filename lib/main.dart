@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'view/screens/home_screen.dart';
 
 void main() async{
-
   WidgetsFlutterBinding.ensureInitialized();
 
   runApp(MyApp());
