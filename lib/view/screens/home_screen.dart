@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:gstsampleproject/view/widgets/slider_button_widget.dart';
-import 'package:gstsampleproject/view_model/gst_view_model.dart';
+import 'package:gstin_check/view/widgets/slider_button_widget.dart';
+import 'package:gstin_check/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +17,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green[400],
@@ -56,11 +55,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 20),
-                    GestureDetector(onTap: () {
-                      setState(() {
-                        _selectorIndexButtonSwitch = !_selectorIndexButtonSwitch;
-                      });
-                    },child: sliderButtonWidget(context, _selectorIndexButtonSwitch)),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _selectorIndexButtonSwitch =
+                                !_selectorIndexButtonSwitch;
+                          });
+                        },
+                        child: sliderButtonWidget(
+                            context, _selectorIndexButtonSwitch)),
                   ],
                 ),
               ),
@@ -115,7 +118,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Padding(
                 padding: const EdgeInsets.all(30.0),
                 child: Text(
-                    "Sample code to test...\nActive - 73137\nDisabled - 28738\n\nPlease check the mockapi data to get the url and see the raw json data\n\nI took a lot of time doing other import stuff and learned few things along the way. I didnt got to make the Switchable_Text ^Above. As shown in the email mock design."),
+                    "Sample code to test...\nActive - 73137\nDisabled - 28738"),
               ),
             ],
           ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gstsampleproject/model/apis/api_response.dart';
-import 'package:gstsampleproject/model/gst.dart';
-import 'package:gstsampleproject/view_model/gst_view_model.dart';
+import 'package:gstin_check/model/apis/api_response.dart';
+import 'package:gstin_check/model/gst.dart';
+import 'package:gstin_check/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
 import './../utilities/ext.dart';
 
@@ -40,24 +40,27 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
           bottomNavigationBar: gst.status
               ? GestureDetector(
-            onTap: () {
-              final snackbar = SnackBar(
-                  content: Text("Button Pressed.... Demo function!!"),);
-              ScaffoldMessenger.of(context).showSnackBar(snackbar);
-            },
-            child: Container(
-                color: gst.status ? Colors.green : Colors.red,
-                width: double.infinity,
-                height: 75,
-                child: Center(
-                    child: Text(
-                      "Get Return Filling Status",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.white,
+                  onTap: () {
+                    final snackbar = SnackBar(
+                      content: Text("Button Pressed.... Demo function!!"),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackbar);
+                  },
+                  child: Container(
+                    color: gst.status ? Colors.green : Colors.red,
+                    width: double.infinity,
+                    height: 75,
+                    child: Center(
+                      child: Text(
+                        "Get Return Filling Status",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),),),
-          )
+                    ),
+                  ),
+                )
               : Container(height: 0, color: Colors.white),
           body: SingleChildScrollView(
             child: Column(
@@ -69,7 +72,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   width: double.infinity,
                   decoration: BoxDecoration(
                     borderRadius:
-                    BorderRadius.vertical(bottom: Radius.circular(30)),
+                        BorderRadius.vertical(bottom: Radius.circular(30)),
                     color: gst.status ? Colors.green : Colors.red,
                   ),
                   child: Padding(
@@ -91,8 +94,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          gst.name
-                              .toUpperCase(), //##@@ gstin Number info
+                          gst.name.toUpperCase(), //##@@ gstin Number info
                           style: TextStyle(
                             fontSize: 16,
                             color: Colors.white,
@@ -111,16 +113,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               children: [
                                 Icon(
                                   Icons.wb_sunny,
-                                  color: gst.status
-                                      ? Colors.green
-                                      : Colors.red,
+                                  color: gst.status ? Colors.green : Colors.red,
                                 ),
                                 SizedBox(width: 8),
                                 Text(
                                   gst.status
                                       ? "active".toUpperCase()
                                       : "disabled"
-                                      .toUpperCase(), //##@@ gstin Number info
+                                          .toUpperCase(), //##@@ gstin Number info
                                   style: TextStyle(
                                     fontSize: 16,
                                   ),
@@ -138,7 +138,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: Card(
                     elevation: 1,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                     color: Colors.white,
                     child: Row(children: [
                       Container(
@@ -257,7 +258,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: Card(
                     elevation: 1,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                     color: Colors.white,
                     child: Row(children: [
                       SizedBox(width: 8),
@@ -290,7 +292,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 30.0),
                   child: Card(
                     elevation: 1,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.zero),
+                    shape:
+                        RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -299,7 +302,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           children: [
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   SizedBox(height: 10),
                                   Text(
@@ -318,7 +322,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ]),
                             Column(
                                 crossAxisAlignment: CrossAxisAlignment.end,
-                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   SizedBox(height: 10),
                                   Text(
@@ -328,9 +333,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     ),
                                   ),
                                   Text(
-                                    gst.status
-                                        ? "--"
-                                        : gst.cancel.capitalize(),
+                                    gst.status ? "--" : gst.cancel.capitalize(),
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -354,7 +357,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
         );
       default:
         return Scaffold(
-          body: Text("Default Mode, Api Status not working : Error while fetching data"),
+          body: Text(
+              "Default Mode, Api Status not working : Error while fetching data"),
         );
     }
   }

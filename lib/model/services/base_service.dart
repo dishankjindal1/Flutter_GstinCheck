@@ -1,6 +1,6 @@
-final String baseUrl = "https://611f9dc6988f860017ac4326.mockapi.io/api/gst?gstin=";
+final String baseUrl = "https://61a39445d5e83300172920b4.mockapi.io/api/gst?gstin=";
 final String dbPath = "gst.json";
 
 abstract class BaseService {
-  Future<dynamic> getResponse(String? value);
+  Future<dynamic> getResponse(String value);
 }

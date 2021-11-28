@@ -1,31 +1,31 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gstsampleproject/model/apis/api_response.dart';
-import 'package:gstsampleproject/model/gst.dart';
-import 'package:gstsampleproject/model/gst_repository.dart';
+import 'package:gstin_check/model/apis/api_response.dart';
+import 'package:gstin_check/model/gst.dart';
+import 'package:gstin_check/model/gst_repository.dart';
 
-class GstViewModel extends ChangeNotifier{
+class GstViewModel extends ChangeNotifier {
   ApiResponse _apiResponse = ApiResponse.initial("Empty Data");
 
-  ApiResponse? get apiResponse{
+  ApiResponse? get apiResponse {
     return _apiResponse;
   }
 
   Gst? _gst;
 
-  Gst? get gst{
+  Gst? get gst {
     return _gst;
   }
 
   GstRepository _gstRepository = GstRepository();
 
-  Future<void> getGstDetails(String? value) async {
+  Future<void> getGstDetails(String value) async {
     _apiResponse = ApiResponse.loading("Fetching Detail of Gst $value");
     notifyListeners();
-    try{
+    try {
       _gst = await _gstRepository.fetchGstDetail(value);
       _apiResponse = ApiResponse.completed(_gst);
-    } catch(e) {
+    } catch (e) {
       _apiResponse = ApiResponse.error(e.toString());
     }
     notifyListeners();
