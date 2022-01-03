@@ -3,6 +3,7 @@ import 'package:gstin_check/model/apis/api_response.dart';
 import 'package:gstin_check/model/gst.dart';
 import 'package:gstin_check/view_model/gst_view_model.dart';
 import 'package:provider/provider.dart';
+import 'package:timelines/timelines.dart';
 import './../utilities/ext.dart';
 
 class DetailsScreen extends StatefulWidget {
@@ -16,7 +17,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     ApiResponse? apiResponse = Provider.of<GstViewModel>(context).apiResponse;
-    switch (apiResponse!.status) {
+    switch (apiResponse?.status) {
       case Status.INITIAL:
         return Scaffold(
           body: Center(
@@ -30,7 +31,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
           ),
         );
       case Status.COMPLETED:
-        Gst gst = apiResponse.data;
+        Gst gst = apiResponse?.data;
         return Scaffold(
           appBar: AppBar(
             title: Text("GST Profile"),
@@ -141,38 +142,64 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     shape:
                         RoundedRectangleBorder(borderRadius: BorderRadius.zero),
                     color: Colors.white,
-                    child: Row(children: [
-                      Container(
-                        width: 25,
-                        color: gst.status ? Colors.green : Colors.red,
-                        child: Text(""),
-                      ),
-                      SizedBox(width: 18),
-                      Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            SizedBox(height: 10),
-                            Text("Principle Place of Bussiness"),
-                            SizedBox(height: 10),
-                            Text(gst.address,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16,
-                                )),
-                            SizedBox(height: 25),
-                            Text("Additional Place of Bussiness"),
-                            SizedBox(height: 10),
-                            Text(
-                              "Floor",
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                    child: FixedTimeline(
+                      children: [
+                        TimelineTile(
+                          nodePosition: 0.1,
+                          node: SizedBox(
+                            height: 75,
+                            child: TimelineNode.simple(color: gst.status ? Colors.green: Colors.red),
+                          ),
+                          contents: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 10),
+                                Text("Principle Place of Bussiness"),
+                                SizedBox(height: 10),
+                                Text(
+                                  gst.address,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
                             ),
-                            SizedBox(height: 10),
-                          ]),
-                    ]),
+                          ),
+                        ),
+                        TimelineTile(
+                          nodePosition: 0.1,
+                          node: SizedBox(
+                            height: 75,
+                            child: TimelineNode.simple(color: gst.status ? Colors.green: Colors.red),
+                          ),
+                          contents: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 16.0),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 10),
+                                Text("Additional Place of Bussiness"),
+                                SizedBox(height: 10),
+                                Text(
+                                  'Floor',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 16,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
                 SizedBox(height: 18),

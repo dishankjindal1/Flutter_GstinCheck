@@ -99,6 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             if (_formKey.currentState!.validate()) {
                               Provider.of<GstViewModel>(context, listen: false)
                                   .getGstDetails(_textEditingController.text);
+
                               _textEditingController.clear();
                               Navigator.pushNamed(context, '/details');
                             }

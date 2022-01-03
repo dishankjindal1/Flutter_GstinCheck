@@ -1,4 +1,4 @@
-class AppException implements Exception{
+abstract class AppException implements Exception{
   String? _prefix;
   String? _message;
 

@@ -5,17 +5,13 @@ import 'package:gstin_check/model/gst.dart';
 import 'package:gstin_check/model/gst_repository.dart';
 
 class GstViewModel extends ChangeNotifier {
-  ApiResponse _apiResponse = ApiResponse.initial("Empty Data");
+  ApiResponse? _apiResponse = ApiResponse.initial("Empty Data");
 
-  ApiResponse? get apiResponse {
-    return _apiResponse;
-  }
+  ApiResponse? get apiResponse => _apiResponse;
 
   Gst? _gst;
 
-  Gst? get gst {
-    return _gst;
-  }
+  Gst? get gst => _gst;
 
   GstRepository _gstRepository = GstRepository();
 

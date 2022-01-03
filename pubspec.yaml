@@ -16,6 +16,7 @@ dependencies:
   provider:            ^6.0.0   # ViewModel - For Change Notifiers or 2Way Binding
   localstorage:        ^4.0.0+1 # LocalStorage - On Device Storage
   sqflite:             ^2.0.0+4 # SqlDB - On Device Storage
+  timelines:           ^0.1.0   # Timeline effect
 
 dev_dependencies:
   #test_api:           ^0.4.3   # Dependency for Test Package

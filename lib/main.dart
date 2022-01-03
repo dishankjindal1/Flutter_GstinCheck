@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gstin_check/view/screens/details_screen.dart';
 import 'package:gstin_check/view_model/gst_view_model.dart';
