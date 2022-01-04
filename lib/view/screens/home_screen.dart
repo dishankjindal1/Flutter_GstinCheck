@@ -74,21 +74,36 @@ class _HomeScreenState extends State<HomeScreen> {
                     key: _formKey,
                     child: Column(
                       children: [
-                        TextFormField(
-                          controller: _textEditingController,
-                          decoration: InputDecoration(
-                            labelStyle:
-                                TextStyle(fontSize: 24, color: Colors.green),
-                            labelText: 'Enter GST number',
-                            hintText: 'Ex 06AFQPJ1959L1ZV',
-                            hintStyle: TextStyle(color: Colors.grey),
-                            fillColor: Colors.white10,
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            'Enter GST number',
+                            style:
+                                TextStyle(fontSize: 24, color: Colors.black54),
                           ),
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter some text';
-                            }
-                          },
+                        ),
+                        ClipRRect(
+                          clipBehavior: Clip.hardEdge,
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 8),
+                            color: Colors.black12,
+                            child: TextFormField(
+                              controller: _textEditingController,
+                              decoration: InputDecoration(
+                                  labelStyle: TextStyle(
+                                      fontSize: 24, color: Colors.green),
+                                  hintText: 'Ex 06AFQPJ1959L1ZV',
+                                  hintStyle: TextStyle(color: Colors.grey),
+                                  border: InputBorder.none),
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter some text';
+                                }
+                              },
+                            ),
+                          ),
                         ),
                         SizedBox(height: 25),
                         ElevatedButton(
